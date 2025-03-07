@@ -1,32 +1,51 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import FeaturedBikes from './components/FeaturedBikes';
-import TrendingBikes from './components/TrendingBikes'; // New Page for Trending Bikes
+import BikeBrands from './components/BikeBrands'; 
+import TrendingBikes from './components/TrendingBikes';
+import PopularBikes from './components/PopularBikes';
 import Footer from './components/Footer';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="font-sans">
+      <div className="font-sans bg-gray-50 min-h-screen">
         <Header />
         <Routes>
           <Route
             path="/"
             element={
-              <div className="container mx-auto px-4">
+              <div className="container mx-auto px-4 py-6">
                 <Hero />
-                <h2 className="text-3xl font-bold text-center my-6">Featured Bikes</h2>
-                <FeaturedBikes />
-                {/* All Trending Bikes Link */}
-                <div className="text-center mt-6">
-                  <a 
-                    href="/trending-bikes" 
-                    className="text-blue-600 font-semibold hover:underline"
+
+                {/* Featured Bikes Section */}
+                <section className="max-w-4xl mx-auto text-center my-4">
+                  <h2 className="text-2xl font-bold text-gray-800">Featured Bikes</h2>
+                  <FeaturedBikes />
+                </section>
+
+                {/* "All Trending Bikes" Link */}
+                <div className="max-w-4xl mx-auto text-left mt-3">
+                  <Link 
+                    to="/trending-bikes" 
+                    className="text-blue-600 font-medium hover:underline text-lg"
                   >
                     All Trending Bikes →
-                  </a>
+                  </Link>
                 </div>
+
+                {/* Popular Bikes Section */}
+                <section className="max-w-4xl mx-auto text-center my-4">
+                  
+                  <PopularBikes />
+                </section>
+
+                {/* Bike Brands Section */}
+                <section className="max-w-4xl mx-auto text-center my-4">
+                  <h2 className="text-2xl font-bold text-gray-800">Browse by Brand</h2>
+                  <BikeBrands />
+                </section>
               </div>
             }
           />
