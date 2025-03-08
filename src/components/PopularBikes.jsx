@@ -5,27 +5,27 @@ const popularBikes = [
   {
     name: "TVS Jupiter",
     price: "₹ 80,568 Onwards",
-    image: "https://imgd.aeplcdn.com/642x361/n/cw/ec/129079/jupiter-right-front-three-quarter-2.jpeg",
+    image: "https://imgd.aeplcdn.com/310x174/n/cw/ec/185315/jupiter-right-side-view-16.jpeg?isig=0&q=80",
   },
   {
     name: "TVS Ntorq 125",
     price: "₹ 94,322 Onwards",
-    image: "https://www.google.com/imgres?q=125%20black%20tvs%20ntorq&imgurl=https%3A%2F%2Fimgd.aeplcdn.com%2F1280x720%2Fn%2Fhje0teb_1777505.jpg%3Fq%3D100&imgrefurl=https%3A%2F%2Fwww.bikewale.com%2Ftvs-bikes%2Fntorq-125%2Fcolours%2Fstealth-black%2F&docid=dHFz-4boXtfetM&tbnid=6X7hAepbs1VQcM&vet=12ahUKEwiDoJWb2veLAxWvna8BHSJVBSQQM3oECBgQAA..i&w=1280&h=720&hcb=2&ved=2ahUKEwiDoJWb2veLAxWvna8BHSJVBSQQM3oECBgQAA",
+    image: "https://imgd.aeplcdn.com/310x174/n/cw/ec/49444/ntorq-125-right-side-view-11.png?isig=0&q=80",
   },
   {
     name: "TVS Raider 125",
     price: "₹ 89,366 Onwards",
-    image: "https://imgd.aeplcdn.com/642x361/n/cw/ec/129357/raider-right-front-three-quarter-2.jpeg",
+    image: "https://imgd.aeplcdn.com/310x174/n/cw/ec/103183/raider-125-right-side-view-20.png?isig=0&q=80",
   },
   {
     name: "OLA S1 X Gen 2",
     price: "₹ 92,225 Onwards",
-    image: "https://imgd.aeplcdn.com/642x361/n/cw/ec/149361/s1-x-gen-2-right-front-three-quarter.jpeg",
+    image: "https://imgd.aeplcdn.com/310x174/n/cw/ec/154921/s1-x-right-front-three-quarter-2.png?isig=0&q=80",
   },
   {
     name: "Honda Activa 6G",
     price: "₹ 78,920 Onwards",
-    image: "https://imgd.aeplcdn.com/642x361/n/cw/ec/39024/activa-6g-right-front-three-quarter-2.jpeg",
+    image: "https://imgd.aeplcdn.com/664x374/n/bw/models/colors/honda-select-model-black-1674535477895.png?q=80",
   }
 ];
 
