@@ -1,11 +1,13 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import FeaturedBikes from './components/FeaturedBikes';
-import BikeBrands from './components/BikeBrands'; 
-import TrendingBikes from './components/TrendingBikes';
-import PopularBikes from './components/PopularBikes';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import FeaturedBikes from "./components/FeaturedBikes";
+import BikeBrands from "./components/BikeBrands";
+import TrendingBikes from "./components/TrendingBikes";
+import PopularBikes from "./components/PopularBikes";
+import Footer from "./components/Footer";
+import Login from "./components/Login";  // ✅ Import Login component
+import Signup from "./components/Signup"; // ✅ Import Signup component
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <div className="font-sans bg-gray-50 min-h-screen">
         <Header />
         <Routes>
+          {/* Home Route */}
           <Route
             path="/"
             element={
@@ -37,7 +40,6 @@ function App() {
 
                 {/* Popular Bikes Section */}
                 <section className="max-w-4xl mx-auto text-center my-4">
-                  
                   <PopularBikes />
                 </section>
 
@@ -49,8 +51,17 @@ function App() {
               </div>
             }
           />
+
+          {/* Trending Bikes Route */}
           <Route path="/trending-bikes" element={<TrendingBikes />} />
+
+          {/* Login Page Route ✅ */}
+          <Route path="/login" element={<Login />} />
+
+          {/* Signup Page Route ✅ */}
+          <Route path="/signup" element={<Signup />} />
         </Routes>
+
         <Footer />
       </div>
     </BrowserRouter>
