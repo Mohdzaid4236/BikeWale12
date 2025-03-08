@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 const categories = ["BRAND", "BUDGET", "DISPLACEMENT", "BODY STYLE"];
 
 const brands = [
-  { name: "Royal Enfield", slug: "royal-enfield" },
-  { name: "Bajaj", slug: "bajaj" },
-  { name: "Honda", slug: "honda" },
-  { name: "TVS", slug: "tvs" },
-  { name: "Hero", slug: "hero" },
-  { name: "KTM", slug: "ktm" },
-  { name: "Kawasaki", slug: "kawasaki" },
-  { name: "Suzuki", slug: "suzuki" },
-  { name: "Yamaha", slug: "yamaha" },
-  { name: "Triumph", slug: "triumph" },
+  { name: "Royal Enfield", slug: "royal-enfield", image: "https://imgd.aeplcdn.com/0X0/bw/makes/royal-enfield20200508193112.jpg?q=80" },
+  { name: "Bajaj", slug: "bajaj",image: "https://imgd.aeplcdn.com/0X0/bw/makes/bajaj20200508192534.jpg?q=80" },
+  { name: "Honda", slug: "honda" ,image: "https://imgd.aeplcdn.com/0X0/bw/makes/honda20200511152343.jpg?q=80"},
+  { name: "TVS", slug: "tvs" ,image: "https://imgd.aeplcdn.com/0X0/bw/makes/tvs20200508193203.jpg?q=80"},
+  { name: "Hero", slug: "hero" ,iamge: "https://imgd.aeplcdn.com/0X0/bw/makes/hero20200508192826.jpg?q=80"},
+  { name: "KTM", slug: "ktm",image:"https://imgd.aeplcdn.com/0X0/bw/makes/ktm20200518163508.jpg?q=80" },
+  { name: "Kawasaki", slug: "kawasaki",image:"https://imgd.aeplcdn.com/0X0/n/cw/ec/17/brands/logos/kawasaki1656405887432.jpg?v=1656405887528&q=80" },
+  { name: "Suzuki", slug: "suzuki",image:"https://imgd.aeplcdn.com/0X0/bw/makes/suzuki20200508193118.jpg?q=80" },
+  { name: "Yamaha", slug: "yamaha" ,image:"https://imgd.aeplcdn.com/0X0/bw/makes/suzuki20200508193118.jpg?q=80"},
+  { name: "Triumph", slug: "triumph",image:"https://imgd.aeplcdn.com/0X0/bw/makes/triumph20200508193154.jpg?q=80" },
 ];
 
 const budgetOptions = [
@@ -58,14 +58,21 @@ const BikeBrands = () => {
     switch (activeCategory) {
       case "BRAND":
         return (
-          <div className="grid grid-cols-5 gap-6 mb-6">
+          <div className="grid grid-cols-5  mb-6">
             {brands.map((brand) => (
               <div
                 key={brand.slug}
-                className="border p-4 rounded-lg flex flex-col items-center cursor-pointer hover:shadow-lg transition"
+                className="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:shadow-lg transition h-32 w-full"
                 onClick={() => handleClick("brand", brand.slug)}
               >
-                <p className="text-lg font-medium">{brand.name}</p>
+                {brand.image && (
+                  <img
+                    src={brand.image}
+                    alt={brand.name}
+                    className="w-24 h-16 object-contain"
+                  />
+                )}
+                <p className="text-lg font-medium mt-2">{brand.name}</p>
               </div>
             ))}
           </div>
