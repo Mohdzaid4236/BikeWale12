@@ -6,8 +6,13 @@ import BikeBrands from "./components/BikeBrands";
 import TrendingBikes from "./components/TrendingBikes";
 import PopularBikes from "./components/PopularBikes";
 import Footer from "./components/Footer";
-import Login from "./components/Login";  // ✅ Import Login component
-import Signup from "./components/Signup"; // ✅ Import Signup component
+import Login from "./components/Login";  
+import Signup from "./components/Signup"; 
+import OnRoadPrice from "./components/OnRoadPrice";  // ✅ Import On-Road Price component
+import BikeTypes from "./components/BikeTypes";  // ✅ Import BikeTypes component
+import CompareBikes from "./components/CompareBikes";
+import ComparePage from "./components/ComparePage";
+
 
 function App() {
   return (
@@ -43,10 +48,24 @@ function App() {
                   <PopularBikes />
                 </section>
 
+                {/* On-Road Price Section ✅ */}
+                <section className="max-w-full mx-auto text-center my-6">
+                  <OnRoadPrice />
+                </section>
+
+                {/* Bike Types Section ✅ */}
+                <section className="max-w-4x1 mx-auto text-center my-4">
+                  <BikeTypes />
+                </section>
+
                 {/* Bike Brands Section */}
                 <section className="max-w-4xl mx-auto text-center my-4">
-                  <h2 className="text-2xl font-bold text-gray-800">Browse by Brand</h2>
                   <BikeBrands />
+                </section>
+
+                {/* Compare Bikes Section */}
+                <section className="max-w-4xl mx-auto text-center my-4">
+                  <CompareBikes />
                 </section>
               </div>
             }
@@ -55,11 +74,15 @@ function App() {
           {/* Trending Bikes Route */}
           <Route path="/trending-bikes" element={<TrendingBikes />} />
 
-          {/* Login Page Route ✅ */}
+          {/* Login Page Route */}
           <Route path="/login" element={<Login />} />
 
-          {/* Signup Page Route ✅ */}
+          {/* Signup Page Route */}
           <Route path="/signup" element={<Signup />} />
+
+          {/* Compare Bikes Route*/}
+          <Route path="/" element={<CompareBikes />} />
+          <Route path="/compare-bikes" element={<ComparePage />} />
         </Routes>
 
         <Footer />
