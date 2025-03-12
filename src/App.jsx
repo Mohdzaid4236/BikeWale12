@@ -12,6 +12,7 @@ import OnRoadPrice from "./components/OnRoadPrice";  // ✅ Import On-Road Price
 import BikeTypes from "./components/BikeTypes";  // ✅ Import BikeTypes component
 import CompareBikes from "./components/CompareBikes";
 import ComparePage from "./components/ComparePage";
+import Detail from "./components/detail";
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
                 <section className="max-w-4xl mx-auto text-center my-4">
                   <CompareBikes />
                 </section>
+
               </div>
             }
           />
@@ -83,6 +85,8 @@ function App() {
           {/* Compare Bikes Route*/}
           <Route path="/" element={<CompareBikes />} />
           <Route path="/compare-bikes" element={<ComparePage />} />
+          <Route path="/bike-detail" element={<Detail />} /> {/* Detail Page */}
+          
         </Routes>
 
         <Footer />
