@@ -9,10 +9,12 @@ function Hero() {
       }}
     >
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-60">
+        <img src="https://www.kunmotorrad.in/wp-content/uploads/2023/12/Safari-5-1024x683.jpg" alt="bike" className="w-full h-full object-cover" />
+      </div>
 
       {/* Content */}
-      <div className="relative text-center text-white px-4">
+      <div className="relative text-center text-white px-4 ">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Get Comprehensive Information on Bikes
         </h1>
@@ -21,7 +23,7 @@ function Hero() {
         </p>
 
         {/* Search Bar */}
-        <div className="relative w-full max-w-lg">
+        <div className="relative w-full max-w-lg bg-white ">
           <input
             type="text"
             placeholder="Search your bike here..."
