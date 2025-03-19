@@ -1,20 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const categories = ["BRAND", "BUDGET", "DISPLACEMENT", "BODY STYLE"];
+const API_URL = "http://127.0.0.1:8000/api/brands/";
+const CATEGORY_API_URL = "http://127.0.0.1:8000/api/categories/";
 
-const brands = [
-  { name: "Royal Enfield", slug: "royal-enfield", image: "https://imgd.aeplcdn.com/0X0/bw/makes/royal-enfield20200508193112.jpg?q=80" },
-  { name: "Bajaj", slug: "bajaj",image: "https://imgd.aeplcdn.com/0X0/bw/makes/bajaj20200508192534.jpg?q=80" },
-  { name: "Honda", slug: "honda" ,image: "https://imgd.aeplcdn.com/0X0/bw/makes/honda20200511152343.jpg?q=80"},
-  { name: "TVS", slug: "tvs" ,image: "https://imgd.aeplcdn.com/0X0/bw/makes/tvs20200508193203.jpg?q=80"},
-  { name: "Hero", slug: "hero" ,iamge: "https://imgd.aeplcdn.com/0X0/bw/makes/hero20200508192826.jpg?q=80"},
-  { name: "KTM", slug: "ktm",image:"https://imgd.aeplcdn.com/0X0/bw/makes/ktm20200518163508.jpg?q=80" },
-  { name: "Kawasaki", slug: "kawasaki",image:"https://imgd.aeplcdn.com/0X0/n/cw/ec/17/brands/logos/kawasaki1656405887432.jpg?v=1656405887528&q=80" },
-  { name: "Suzuki", slug: "suzuki",image:"https://imgd.aeplcdn.com/0X0/bw/makes/suzuki20200508193118.jpg?q=80" },
-  { name: "Yamaha", slug: "yamaha" ,image:"https://imgd.aeplcdn.com/0X0/bw/makes/suzuki20200508193118.jpg?q=80"},
-  { name: "Triumph", slug: "triumph",image:"https://imgd.aeplcdn.com/0X0/bw/makes/triumph20200508193154.jpg?q=80" },
-];
+const categories = ["BRAND", "BUDGET", "DISPLACEMENT", "BODY STYLE"];
 
 const budgetOptions = [
   { label: "Under ₹50,000", slug: "under-50000" },
@@ -37,98 +27,103 @@ const displacementOptions = [
   { label: "500cc & Above", slug: "500cc-above" },
 ];
 
-const bodyStyleOptions = [
-  { label: "Cruiser", slug: "cruiser" },
-  { label: "Sports Bike", slug: "sports-bike" },
-  { label: "Adventure", slug: "adventure" },
-  { label: "Tourer", slug: "tourer" },
-  { label: "Scooter", slug: "scooter" },
-  { label: "Commuter", slug: "commuter" },
-];
-
 const BikeBrands = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("BRAND");
+  const [brands, setBrands] = useState([]);
+  const [bodyStyles, setBodyStyles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleClick = (category, slug) => {
-    navigate(`/bikes/${category}/${slug}`);
-  };
+  // Fetch brands
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Failed to fetch brands");
 
-  const renderOptions = () => {
-    switch (activeCategory) {
-      case "BRAND":
-        return (
-          <div className="grid grid-cols-5  mb-6">
-            {brands.map((brand) => (
-              <div
-                key={brand.slug}
-                className="border p-2 rounded-lg flex flex-col items-center cursor-pointer hover:shadow-lg transition h-32 w-full"
-                onClick={() => handleClick("brand", brand.slug)}
-              >
-                {brand.image && (
-                  <img
-                    src={brand.image}
-                    alt={brand.name}
-                    className="w-24 h-16 object-contain"
-                  />
-                )}
-                <p className="text-lg font-medium mt-2">{brand.name}</p>
-              </div>
-            ))}
-          </div>
-        );
-      case "BUDGET":
-        return (
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            {budgetOptions.map((budget) => (
-              <button
-                key={budget.slug}
-                className="border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition"
-                onClick={() => handleClick("budget", budget.slug)}
-              >
-                {budget.label}
-              </button>
-            ))}
-          </div>
-        );
-      case "DISPLACEMENT":
-        return (
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            {displacementOptions.map((displacement) => (
-              <button
-                key={displacement.slug}
-                className="border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition"
-                onClick={() => handleClick("displacement", displacement.slug)}
-              >
-                {displacement.label}
-              </button>
-            ))}
-          </div>
-        );
-      case "BODY STYLE":
-        return (
-          <div className="grid grid-cols-3 gap-4">
-            {bodyStyleOptions.map((bodyStyle) => (
-              <button
-                key={bodyStyle.slug}
-                className="border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition"
-                onClick={() => handleClick("body-style", bodyStyle.slug)}
-              >
-                {bodyStyle.label}
-              </button>
-            ))}
-          </div>
-        );
-      default:
-        return null;
-    }
+        const data = await response.json();
+        console.log("Brands API Response:", data); // Debugging API response
+
+        const brandsArray = data.results ?? []; // Ensure we have an array
+        setBrands(Array.isArray(brandsArray) ? brandsArray : []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBrands();
+  }, []);
+
+  // Fetch body styles (categories API)
+  useEffect(() => {
+    const fetchBodyStyles = async () => {
+      try {
+        const response = await fetch(CATEGORY_API_URL);
+        if (!response.ok) throw new Error("Failed to fetch body styles");
+
+        const data = await response.json();
+        console.log("Categories API Response:", data); // Debugging API response
+
+        const categoriesArray = data.results ?? []; // Ensure we have an array
+        setBodyStyles(Array.isArray(categoriesArray) ? categoriesArray : []);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+    fetchBodyStyles();
+  }, []);
+
+  const handleClick = (category, slug) => navigate(`/bikes/${category}/${slug}`);
+
+  const categoryMap = {
+    BRAND: brands.map((brand) => (
+      <div
+        key={brand?.slug || Math.random()} // Ensure key is valid
+        className="border p-3 rounded-lg flex flex-col items-center cursor-pointer hover:shadow-lg transition bg-white shadow-md h-40"
+        onClick={() => handleClick("brand", brand?.slug || "unknown")}
+      >
+        {brand?.image && (
+          <img src={brand.image} alt={brand.name || "Unknown"} className="w-24 h-16 object-contain" />
+        )}
+        <p className="text-lg font-medium mt-2 text-center">{brand?.name || "Unknown"}</p>
+      </div>
+    )),
+    BUDGET: budgetOptions.map((budget) => (
+      <button
+        key={budget.slug}
+        className="border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition shadow-md bg-white"
+        onClick={() => handleClick("budget", budget.slug)}
+      >
+        {budget.label}
+      </button>
+    )),
+    DISPLACEMENT: displacementOptions.map((displacement) => (
+      <button
+        key={displacement.slug}
+        className="border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition shadow-md bg-white"
+        onClick={() => handleClick("displacement", displacement.slug)}
+      >
+        {displacement.label}
+      </button>
+    )),
+    "BODY STYLE": bodyStyles.map((bodyStyle) => (
+      <button
+        key={bodyStyle?.slug || Math.random()} // Ensure key is valid
+        className="border px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition shadow-md bg-white"
+        onClick={() => handleClick("body-style", bodyStyle?.slug || "unknown")}
+      >
+        {bodyStyle?.name || "Unknown"}
+      </button>
+    )),
   };
 
   return (
     <div className="p-6">
       <h2 className="text-2xl font-semibold mb-4">Browse Bikes By</h2>
 
-      {/* Navigation Tabs */}
+      {/* Category Selection */}
       <div className="flex space-x-6 border-b mb-4 text-lg">
         {categories.map((category) => (
           <button
@@ -145,10 +140,19 @@ const BikeBrands = () => {
         ))}
       </div>
 
-      {/* Dynamic Content */}
-      {renderOptions()}
+      {/* Display Options */}
+      {loading ? (
+        <p>Loading brands...</p>
+      ) : error ? (
+        <p className="text-red-500">Error: {error}</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {categoryMap[activeCategory]}
+        </div>
+      )}
     </div>
   );
 };
 
 export default BikeBrands;
+

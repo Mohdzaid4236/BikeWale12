@@ -3,10 +3,8 @@ import React from "react";
 function Hero() {
   return (
     <div
-      className="relative h-[400px] md:h-[500px] flex flex-col items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage: "url('/banner.jpg')", // Update this path as needed
-      }}
+      className="relative w-full h-[400px] md:h-[500px] flex flex-col items-center justify-center bg-cover bg-center"
+      
     >
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-60">

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const bikeBrands = [
-  { name: "Royal Enfield", image: "https://imgd.aeplcdn.com/0X0/bw/makes/royal-enfield20200508193112.jpg?q=80" },
+  { name: "Royal Enfield", image: "https://imgd.aeplcdn.com/310x174/n/cw/ec/124013/hunter-350-right-side-view-5.png?isig=0&q=80" },
   { name: "Bajaj" },
   { name: "Honda" },
   { name: "TVS" },

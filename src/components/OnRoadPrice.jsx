@@ -12,7 +12,7 @@ const BikePriceChecker = () => {
       
 
       {/* Content Box */}
-      <div className="relative z-10 bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-md text-center text-white">
+      <div className="relative z-10 bg-white p-6 rounded-lg shadow-lg w-full max-w-md text-center text-Black">
         <h2 className="text-2xl font-bold mb-4">Check On-Road Price</h2>
 
         {/* Search Input */}
