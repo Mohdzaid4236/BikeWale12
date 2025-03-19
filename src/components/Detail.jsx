@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import SpecificationSection from "./specspage";
 
 const variants = ["Standard", "Custom", "Sport", "Touring"];
 const cities = ["New York", "Los Angeles", "Chicago", "Houston"];
@@ -156,6 +157,10 @@ function Detail() {
 
       </div>
 
+      {/* Add Specifications Section Below */}
+      <div className="mt-6">
+        <SpecificationSection/>
+      </div>
     </div>
   );
 }
